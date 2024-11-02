@@ -50,38 +50,12 @@ protocols       = ['cbthunderlink', 'thunderlink']    # Protocol can not have _ 
 this_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 log_dir  = f"{this_dir}/logs"
 
-if not os.path.exists(log_dir) :
-    os.makedirs(log_dir)
-
 logger = logging.getLogger(__name__)
-
-#####
-
-def get_log_filename() :
-
-    log_filename = os.path.join(log_dir, "%s.log" % (program_name))
-    return log_filename
-
-#####
-
-def install_logger() :
-
-    root_logger = logging.getLogger()
-    root_logger.setLevel(logging.DEBUG)
-
-    file_handler = logging.FileHandler(get_log_filename(), mode='a')
-    file_handler.setLevel(logging.DEBUG)
-    file_formatter = logging.Formatter(
-            '%(asctime)s - %(process)5d - %(levelname)s - %(lineno)4d : %(message)s')
-    file_handler.setFormatter(file_formatter)
-
-    root_logger.addHandler(file_handler)
 
 #####
 
 if __name__ == '__main__' :
 
-    install_logger()
     logger.info("="*100)
     logger.info(f"Starting {program_name} ({sys.argv})")
 
